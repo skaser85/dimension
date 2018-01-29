@@ -14,33 +14,107 @@
 
 <body>
     <div id="main">
-        <div class="main-rows">
-            <div class="row icon-row">
-                <span class="icon-container">
-                    <i class="fa fa-diamond fa-2x"></i>
-                </span>
+        <div class="main-container" :class="{modalactive: showModal}">
+            <div class="main-rows">
+                <div class="row icon-row">
+                    <span class="icon-container">
+                        <i class="fa fa-diamond fa-2x"></i>
+                    </span>
+                </div>
+                <div class="row vert-line top-middle">
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="row main-content">
+                    <h1>DIMENSION</h1>
+                    <p>Seriously,
+                        <a href="https://google.com">ridiculously</a>
+                        awesome, totally non-nonsense. I mean, how could you not want to pay a
+                        <a href="https://google.com">million</a>
+                        dollars for this?!?
+                    </p>
+                </div>
+                <div class="row vert-line bottom-middle">
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav class="row nav-row">
+                    <div class="nav-item" @click="showIntro">
+                        <span>INTRO</span>
+                    </div>
+                    <div class="nav-item" @click="showWork">
+                        <span>WORK</span>
+                    </div>
+                    <div class="nav-item" @click="showAbout">
+                        <span>ABOUT</span>
+                    </div>
+                    <div class="nav-item" @click="showContact">
+                        <span>CONTACT</span>
+                    </div>
+                </nav>
             </div>
-            <div class="row vert-line top-middle"><span></span><span></span></div>
-            <div class="row main-content">
-                <h1>DIMENSION</h1>
-                <p>Seriously, <a href="https://google.com">ridiculously</a> 
-                    awesome, totally non-nonsense.  I mean, how could you not 
-                    want to pay a <a href="https://google.com">million</a> 
-                    dollars for this?!?
-                </p>
-            </div>
-            <div class="row vert-line bottom-middle"><span></span><span></span></div>
-            <nav class="row nav-row">
-                <div class="nav-item"><span>INTRO</span></div>
-                <div class="nav-item"><span>WORK</span></div>
-                <div class="nav-item"><span>ABOUT</span></div>
-                <div class="nav-item"><span>CONTACT</span></div>
-            </nav>
+            <footer>
+                &copy; DIMENSION. DESIGN:
+                <a href="https://html5up.net/">HTML5UP.</a>
+            </footer>
         </div>
-        <footer>
-            &copy; DIMENSION. DESIGN: <a href="https://html5up.net/">HTML5UP.</a>
-        </footer>
+        <modal v-show="showModal" @close="showModal=false" :infos="infos" :intro="intro" :work="work" :about="about" :contact="contact"></modal>
     </div>
+
+    <!-- TEMPLATES HERE!!! -->
+    <template id="modal">
+        <div class="modal-container">
+            <div class="modal-content">
+                <!-- INTRO -->
+                <info :title="infos[0].title" :img-url="infos[0].imgUrl" :body="infos[0].body" v-show="intro"></info>
+                <!-- WORK -->
+                <info :title="infos[1].title" :img-url="infos[1].imgUrl" :body="infos[1].body" v-show="work"></info>
+                <!-- ABOUT -->
+                <info :title="infos[2].title" :img-url="infos[2].imgUrl" :body="infos[2].body" v-show="about"></info>
+                <!-- CONTACT -->
+                <contact-form v-show="contact"></contact-form>
+                <span class="modal-close" aria-label="close" @click="$emit('close')">X</span>
+            </div>
+        </div>
+    </template>
+
+    <template id="info">
+        <div class="info-container">
+            <h1>{{ title }}</h1>
+            <img :src="imgUrl">
+            <p>{{ body }}</p>
+        </div>
+    </template>
+
+    <template id="form">
+        <div class="form-container">
+            <h1>contact</h1>
+            <div class="name-email">
+                <div class="input-container name">
+                    <label for="name">name</label>
+                    <input v-model="name" class="input-box" type="text" name="name" id="name">
+                </div>
+                <div class="input-container email">
+                    <label for="email">email</label>
+                    <input v-model="email" class="input-box" type="email" name="email" id="email">
+                </div>
+            </div>
+            <div class="input-container message-container">
+                <label for="message">message</label>
+                <textarea v-model="message" class="input-box" ></textarea>
+            </div>
+            <div class="form-buttons">
+                <div class="btn send-message" @click="sendMessage">send message</div>
+                <div class="btn reset" @click="resetFields">reset</div>
+            </div>
+            <div class="social-media-buttons">
+                <a href="https://twitter.com"><i class="fa fa-twitter"></i></a>
+                <a href="https://facebook.com"><i class="fa fa-facebook"></i></a>
+                <a href="https://instagram.com"><i class="fa fa-instagram"></i></a>
+                <a href="https://github.com"><i class="fa fa-github"></i></a>
+            </div>
+        </div>
+    </template>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
     <script src="https://unpkg.com/vue"></script>

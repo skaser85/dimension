@@ -1,4 +1,9 @@
 #main {
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.main-container {
     /* background: url("./images/sven-scheuermeier-37377.jpg"); */
     /* background: url("./images/mark-basarab-122141.jpg"); */
     background: url("./images/jonatan-pie-234237.jpg");
@@ -13,8 +18,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
-    font-family: 'Open Sans', sans-serif;
+    position: relative;
+}
+
+.modalactive {
+    filter: blur(5px);
 }
 
 a {
@@ -112,6 +120,227 @@ footer {
     font-weight: 300;
 }
 
+/* MODAL STYLES */
+.modal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, .5);
+    color: #eee;
+}
+
+.modal-content {
+    display: flex;
+    width: 60%;
+    height: 75%;
+    background: rgba(33, 33, 37, 0.925);
+    position: relative;
+    border-radius: 5px;
+}
+
+.modal-close {
+    color: rgba(255, 255, 255, .5);
+    font-size: 1.5em;
+    font-weight: 700;
+    padding: 5px 8px;
+    position: absolute;
+    left: 94%;
+    top: .5%;
+    border-radius: 50%;
+    padding: 5px 10;
+    transition: all .2s ease-out;
+}
+
+.modal-close:hover {
+    cursor: pointer;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 40px 10px;
+}
+
+.info-container h1 {
+    width: 25%;
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: .5ch;
+    padding-bottom: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 1px solid #eee;
+    color: #eee;
+}
+
+.info-container img {
+    width: 100%;
+    height: 30%;
+    margin: 40px 0;
+    border-radius: 5px;
+}
+
+.info-container p {
+    width: 100%;
+    color: #eee;
+    line-height: 1.5em;
+    letter-spacing: .1ch;
+    font-size: 1em;
+    font-weight: 300;
+}
+
+.form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 40px 10px;
+    text-transform: uppercase;
+    color: #eee;
+}
+
+.form-container h1 {
+    width: 35%;
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: .5ch;
+    padding-bottom: 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    color: #eee;
+}
+
+.name-email {
+    width: 100%;
+    margin: 40px 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.name, .email {
+    width: 50%;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.email {
+    margin-left: 20px;
+}
+
+.input-container label {
+    padding-bottom: 10px;
+}
+
+.form-container label, .btn {
+    line-height: 1.5em;
+    letter-spacing: .1ch;
+    font-size: 1em;
+    font-weight: 300;
+}
+
+.message-container {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.message-container > textarea {
+    height: 150px;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.input-box {
+    background: rgba(33, 33, 37, 0.925);
+    border: 1px solid #eee;
+    border-radius: 4px;
+    caret-color: #eee;
+    color: #eee;
+    padding: 10px;
+    font-size: 1em;
+}
+
+.input-box:focus {
+    background: rgba(255, 255, 255, 0.10);
+    outline: white;
+    border: 2px solid #eee;
+}
+
+.form-buttons {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.btn {
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    font-size: .8em;
+    letter-spacing: .5ch;
+    font-weight: 700;
+    transition: all .2s ease-out;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.send-message {
+    width: 35%;
+    background: #eee;
+    color: black;
+}
+
+.send-message:hover {
+    background: #ddd;
+}
+
+.reset {
+    width: 15%;
+    margin-left: 20px;
+}
+
+.reset:hover {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.social-media-buttons {
+    display: flex;
+    flex-direction: row;
+    width: 35%;
+}
+
+.social-media-buttons i {
+    font-size: 1em;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    height: 2em;
+    width: 2.25em;
+    text-align: center;
+    line-height: 2em;
+    transition: all .2s ease-out;
+    margin-right: 15px;
+}
+
+.social-media-buttons i:hover {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+/* MEDIA QUERIES */
 @media screen and (max-width: 820px) {
     .main-rows {
         width: 90vw;
@@ -157,5 +386,87 @@ footer {
     
     .nav-item:not(:last-child) {
         border-bottom: 1px solid white;
+    }
+    
+    .modal-content {
+        width: 90%;
+        height: 90%;
+    }
+    
+    .modal-close {
+        left: 90%;
+    }
+
+    .info-container {
+        padding: 40px 20px 10px;
+    }
+    
+    .info-container h1 {
+        width: 35%;
+        font-size: 20px;
+    }
+    
+    .info-container img {
+        height: 25%;
+        margin: 20px 0;
+    }
+    
+    .info-container p {
+        font-size: .9em;
+    }
+
+    .form-container {
+        padding: 40px 20px 10px;
+    }
+    
+    .form-container h1 {
+        width: 40%;
+        font-size: 20px;
+    }
+    
+    .name-email {
+        flex-direction: column;
+        margin: 20px 0px 0px 0px;
+    }
+
+    .name, .email {
+        margin-bottom: 40px;
+    }
+
+    .email {
+        margin-left: 0;
+    }
+    
+    .input-container {
+        width: 100%;
+    }
+    
+    .input-container label {
+        padding-bottom: 5px;
+    }
+    
+    .form-container label, .btn {
+        font-size: .8em;
+    }
+    
+    .message-container {
+        margin-bottom: 20px;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+    }
+    
+    .send-message {
+        width: 90%;
+    }
+    
+    .reset {
+        width: 90%;
+        margin: 20px 0px 0px 0px;
+    }
+    
+    .social-media-buttons {
+        padding-bottom: 10px;
     }
 }
